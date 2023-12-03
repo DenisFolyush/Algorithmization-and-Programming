@@ -77,11 +77,13 @@ def calculator(countries):
     Parameters:
     - countries (list of Country): List of Country objects.
     """
+    last_density = None
     for self_country in countries:
         density = self_country.population / self_country.area
         print(f"Population density of {self_country.name} is {density} people per square unit.")
+        last_density = density
     # Return the density of the last country in the list
-    return density
+    return last_density
 
 
 def guess_country_by_area(area):
@@ -96,9 +98,9 @@ def guess_country_by_area(area):
     """
     if area == 603500:
         return "It's Ukraine"
-    elif area == 9596960:
+    if area == 9596960:
         return "It's China"
-    elif area == 9833520:
+    if area == 9833520:
         return "It's USA"
     else:
         return "Sorry, I don't recognize the country for the given area"
@@ -129,3 +131,4 @@ if __name__ == '__main__':
     print("Top countries by GDP:")
     for country in sorted_countries:
         print(f"{country.name}: {country.gdp} $")
+        
