@@ -106,15 +106,7 @@ def guess_country_by_area(area):
         return "Sorry, I don't recognize the country for the given area"
 
 
-# Example usage:
-# Uncomment the line below if you want to take user input for country_area
-# country_area = int(input("Guess country by area: "))
-country_area = 603500
-
-guess_result = guess_country_by_area(country_area)
-print(guess_result)
-
-if __name__ == '__main__':
+def main():
     # Creating Country objects with different government types
     country1 = Country("Ukraine", "Kyiv", "UA", 40000000,
                        603500, 150000000000, GovernmentType.DEMOCRACY)
@@ -131,4 +123,14 @@ if __name__ == '__main__':
     print("Top countries by GDP:")
     for country in sorted_countries:
         print(f"{country.name}: {country.gdp} $")
-        
+
+    # Example usage of guess_country_by_area function
+    # Uncomment the line below if you want to take user input for country_area
+    # country_area = int(input("Guess country by area: "))
+    country_area = 603500
+    guess_result = guess_country_by_area(country_area)
+    print(guess_result)
+
+
+if __name__ == '__main__':
+    main()
