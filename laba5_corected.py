@@ -1,6 +1,5 @@
 """
 laba5_corrected.py
-
 This module contains the definition of the 'GovernmentType' enumeration,
 which represents different types of government.
 """
@@ -22,7 +21,6 @@ class Land:
     def __init__(self, name, population, area, government_type):
         """
         Initializes a new Land object.
-
         Parameters:
         - name (str): The name of the land.
         - population (int): The population of the land.
@@ -41,7 +39,6 @@ class Country(Land):
     def __init__(self, name, capital, code, population, area, gdp, government_type):
         """
         Initializes a new Country object.
-
         Parameters:
         - name (str): The name of the country.
         - capital (str): The capital city of the country.
@@ -60,10 +57,8 @@ class Country(Land):
 def sort_by_gdp(countries):
     """
     Sorts a list of countries based on their GDP in descending order.
-
     Parameters:
     - countries (list of Country): List of Country objects.
-
     Returns:
     - list of Country: List of Country objects sorted by GDP in descending order.
     """
@@ -73,46 +68,44 @@ def sort_by_gdp(countries):
 def calculator(countries):
     """
     Calculates and prints the population density for each country.
-
     Parameters:
     - countries (list of Country): List of Country objects.
     """
+    last_density = None
     for self_country in countries:
         density = self_country.population / self_country.area
         print(f"Population density of {self_country.name} is {density} people per square unit.")
+        last_density = density
     # Return the density of the last country in the list
-    return density
+    return last_density
 
 
 def guess_country_by_area(area):
     """
     Guesses the country based on the provided area.
-
     Parameters:
     - area (int): The area for which the country is to be guessed.
-
     Prints:
     - str: A message indicating the guessed country or an apology if the country is not recognized.
     """
     if area == 603500:
         return "It's Ukraine"
-    elif area == 9596960:
+    if area == 9596960:
         return "It's China"
-    elif area == 9833520:
+    if area == 9833520:
         return "It's USA"
     else:
         return "Sorry, I don't recognize the country for the given area"
 
 
-# Example usage:
-# Uncomment the line below if you want to take user input for country_area
-# country_area = int(input("Guess country by area: "))
-country_area = 603500
+def main():
+    # Uncomment the line below if you want to take user input for country_area
+    # country_area = int(input("Guess country by area: "))
+    country_area = 603500
 
-guess_result = guess_country_by_area(country_area)
-print(guess_result)
+    guess_result = guess_country_by_area(country_area)
+    print(guess_result)
 
-if __name__ == '__main__':
     # Creating Country objects with different government types
     country1 = Country("Ukraine", "Kyiv", "UA", 40000000,
                        603500, 150000000000, GovernmentType.DEMOCRACY)
@@ -122,10 +115,15 @@ if __name__ == '__main__':
                        16600000000000, GovernmentType.AUTOCRACY)
 
     # Using the calculator function
-    calculator([country1, country2, country3])
+    last_density = calculator([country1, country2, country3])
+    print(f"The population density of the last country is {last_density} people per square unit.")
 
     # Sorting and printing countries by GDP
     sorted_countries = sort_by_gdp([country1, country2, country3])
     print("Top countries by GDP:")
     for country in sorted_countries:
         print(f"{country.name}: {country.gdp} $")
+
+if __name__ == '__main__':
+    main()
+    
