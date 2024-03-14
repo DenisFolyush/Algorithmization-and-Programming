@@ -4,21 +4,34 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def depth(node: TreeNode, d: int) -> int:
+
+def height(node):
     if node is None:
         return 0
-    return d + depth(node.left, d + 1) + depth(node.right, d + 1)
+    return max(height(node.left), height(node.right)) + 1
 
-def sum_of_depths(root: TreeNode) -> int:
-    if root is None:
+
+def balance_factor(node):
+    if node is None:
         return 0
-    return depth(root, 0) + sum_of_depths(root.left) + sum_of_depths(root.right)
+    return height(node.left) - height(node.right)
 
-# Тестовий приклад:
+
+def is_tree_balanced(node):
+    if node is None:
+        return True
+
+    bf = balance_factor(node)
+
+    if abs(bf) <= 1 and is_tree_balanced(node.left) and is_tree_balanced(node.right):
+        return True
+
+    return False
+
+
 root = TreeNode(3)
 root.left = TreeNode(9)
 root.right = TreeNode(20)
 root.right.left = TreeNode(15)
-root.right.right = TreeNode(7)
-
-print(sum_of_depths(root))  # Повинно вивести 4
+root.right.left.right = TreeNode(17)
+print(is_tree_balanced(root))

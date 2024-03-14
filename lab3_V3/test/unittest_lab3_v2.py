@@ -1,16 +1,16 @@
+from ..str.lab3_v2 import TreeNode, is_tree_balanced
+
 import unittest
 
-from ..str.lab3_v2 import BinaryTree, post_order_traversal
+class TestBinaryTree(unittest.TestCase):
+    def test_is_tree_balanced(self):
+        root = TreeNode(3)
+        root.left = TreeNode(9)
+        root.right = TreeNode(20)
+        root.right.left = TreeNode(15)
+        root.right.right = TreeNode(7)
 
-root = BinaryTree(3)
-root.left = BinaryTree(9)
-root.right = BinaryTree(20)
-root.left.left = BinaryTree(5)
-root.left.right = BinaryTree(12)
-root.right.left = BinaryTree(15)
-root.right.right = BinaryTree(7)
+        self.assertFalse(is_tree_balanced(root))
 
-result = post_order_traversal(root)
-expected_result = [5, 12, 9, 15, 7, 20, 3]
-
-assert result == expected_result, f"Expected: {expected_result}, but got: {result}"
+if __name__ == '__main__':
+    unittest.main()
