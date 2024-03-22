@@ -27,3 +27,15 @@ def is_tree_balanced(node):
         return True
 
     return False
+
+
+root = TreeNode(48)
+root.left = TreeNode(20)
+root.left.left = TreeNode(18)
+root.left.right = TreeNode(25)
+root.left.left.left = TreeNode(11)
+root.left.left.right = TreeNode(19)
+root.right = TreeNode(50)
+root.right.left = TreeNode(49)
+root.right.right = TreeNode(55)
+print(is_tree_balanced(root))
