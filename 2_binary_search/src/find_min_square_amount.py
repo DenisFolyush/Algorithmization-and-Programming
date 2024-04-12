@@ -17,9 +17,3 @@ def check_capacity(w, h, N, x):
     else:
         return False
 
-
-W = 2
-H = 3
-N = 10
-
-print(find_square(N, W, H))
