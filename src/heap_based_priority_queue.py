@@ -33,11 +33,11 @@ class PriorityQueue:
         max_element = self.get_max()
         if self.size() == 1:
             del self.items[0::]
-            return max_element
+            return max_element.value
         self.items[0] = self.items[-1]
         del self.items[-1]
         self.max_heapify(0)
-        return max_element
+        return max_element.value
 
     def max_heapify(self, i):
         l = self.left(i)
@@ -79,13 +79,3 @@ class PriorityQueue:
     def __str__(self):
         return ', '.join(str(node.value) for node in self.items)
 
-queue = PriorityQueue()
-queue.insert('A', 0)
-queue.insert('B', 20)
-queue.insert('C', 20)
-queue.insert('D', 15)
-
-print("Черга після вставки:", queue)
-max_element = queue.extract_max()
-print("Видалений елемент з найвищим пріоритетом:", max_element.value)
-print("Черга після видалення:", queue)
