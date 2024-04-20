@@ -9,7 +9,7 @@ class TestBeersFunction(unittest.TestCase):
         self.assertEqual(beers(2, 2, "NNNN"), None)
 
     def test_beers_case2(self):
-        self.assertEqual(beers(6, 3, "YNNYNYNYNYYNYYNYNYYNYN"), 2)
+        self.assertEqual(beers(6, 3, "YNNYNYNYNYYNYYNYNY"), 2)
 
     def test_beers_case3(self):
         self.assertEqual(beers(0, 3, "YNNYNYNYNYYNYYNYNYYNYN"), None)

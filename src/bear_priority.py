@@ -14,13 +14,13 @@ def beers(workers, beer_types, like_bear):
             beers_set.update(possible_set)  # Додаєм пиво
             types_of_beer += 1  # пива + 1
 
-    # обмеження
     if workers <= 0 or workers >= 50 or beer_types <= 0 or beer_types >= 50:
         return None
     if 'Y' not in like_bear:
         return None
 
     if types_of_beer == 0:
+
         return None
     else:
         return types_of_beer
