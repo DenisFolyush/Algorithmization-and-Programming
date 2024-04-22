@@ -13,14 +13,14 @@ def beers(workers, beer_types, like_bear):
         if possible_set.isdisjoint(beers_set):
             beers_set.update(possible_set)  # Додаєм пиво
             types_of_beer += 1  # пива + 1
-
-    # обмеження
+    # обмежння
     if workers <= 0 or workers >= 50 or beer_types <= 0 or beer_types >= 50:
         return None
     if 'Y' not in like_bear:
         return None
 
     if types_of_beer == 0:
+
         return None
     else:
         return types_of_beer
