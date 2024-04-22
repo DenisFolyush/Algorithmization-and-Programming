@@ -1,10 +1,13 @@
 def kmp_search(needle, haystack):
-    p = [0] * len(needle)
-    j = 0
-    i = 1
     if not needle:
         return True
-    while i < len(needle):
+
+    m = len(needle)
+    n = len(haystack)
+    p = [0] * m
+    j = 0
+    i = 1
+    while i < m:
         if needle[j] == needle[i]:
             p[i] = j + 1
             i += 1
@@ -16,9 +19,7 @@ def kmp_search(needle, haystack):
             else:
                 j = p[j - 1]
 
-    m = len(needle)
-    n = len(haystack)
-
+    result = []
     i = 0
     j = 0
     while i < n:
@@ -26,11 +27,12 @@ def kmp_search(needle, haystack):
             i += 1
             j += 1
             if j == m:
-                return True
+                result.append(i - m)
+                j = p[j - 1] if j > 0 else 0
         else:
             if j > 0:
                 j = p[j - 1]
             else:
                 i += 1
 
-    return False
+    return result

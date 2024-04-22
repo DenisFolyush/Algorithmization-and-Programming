@@ -1,30 +1,33 @@
 import unittest
-
 from src.kmp_argoritm import kmp_search
 
 
 class TestKMP(unittest.TestCase):
-    def test_kmp_search(self):
-        # текст якщо є шукане слово
+    def test_kmp_search_found(self):
+        # якщо є шукане слово
         needle = "babato"
         haystack = "bababalabohatoiababato"
-        self.assertTrue(kmp_search(needle, haystack))
+        self.assertEqual(kmp_search(needle, haystack), [16])
 
-        # якщо немає
+    def test_kmp_search_not_found(self):
+        # якщо немає шуканого слова
         needle = "xyz"
         haystack = "bababalabohatoiababato"
-        self.assertFalse(kmp_search(needle, haystack))
+        self.assertEqual(kmp_search(needle, haystack), [])
 
+    def test_kmp_search_empty_needle(self):
         # якщо шуканого слова немає
         needle = ""
         haystack = "bababalabohatoiababato"
-        self.assertTrue(kmp_search(needle, haystack))
+        self.assertFalse(needle, haystack)
 
+    def test_kmp_search_empty_haystack(self):
         # якщо хайстек пустий
         needle = "babato"
         haystack = ""
-        self.assertFalse(kmp_search(needle, haystack))
+        self.assertEqual(kmp_search(needle, haystack), [])
 
+    def test_kmp_search_both_empty(self):
         # що то що то пусте
         needle = ""
         haystack = ""
