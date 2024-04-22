@@ -1,38 +1,42 @@
-def kmp_search(needle, haystack):
+def prefix_func(needle):
     if not needle:
-        return True
+        return "no needle"
 
-    m = len(needle)
-    n = len(haystack)
-    p = [0] * m
+    needle_len = len(needle)
+    prefix = [0] * needle_len
     j = 0
     i = 1
-    while i < m:
+    while i < needle_len:
         if needle[j] == needle[i]:
-            p[i] = j + 1
+            prefix[i] = j + 1
             i += 1
             j += 1
         else:
             if j == 0:
-                p[i] = 0
+                prefix[i] = 0
                 i += 1
             else:
-                j = p[j - 1]
+                j = prefix[j - 1]
+    return prefix
 
+
+def kmp_search(needle, haystack):
     result = []
+    haystack_len = len(haystack)
+    needle_len = len(needle)
+    prefix = prefix_func(needle)
     i = 0
     j = 0
-    while i < n:
+    while i < haystack_len:
         if haystack[i] == needle[j]:
             i += 1
             j += 1
-            if j == m:
-                result.append(i - m)
-                j = p[j - 1] if j > 0 else 0
+            if j == needle_len:
+                result.append(i - needle_len)
+                j = prefix[j - 1] if j > 0 else 0
         else:
             if j > 0:
-                j = p[j - 1]
+                j = prefix[j - 1]
             else:
                 i += 1
-
     return result
