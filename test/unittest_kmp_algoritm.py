@@ -6,7 +6,7 @@ class TestKMP(unittest.TestCase):
     def test_kmp_search_found(self):
         # якщо є шукане слово
         needle = "babato"
-        haystack = "bababalabohatoiababato"
+        haystack = "bababalabohababatotoiababato"
         self.assertEqual(kmp_search(needle, haystack), [16])
 
     def test_kmp_search_not_found(self):

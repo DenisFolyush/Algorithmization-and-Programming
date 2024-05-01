@@ -8,6 +8,7 @@ def kmp_search(needle, haystack):
     j = 0
     i = 1
     while i < m:
+
         if needle[j] == needle[i]:
             p[i] = j + 1
             i += 1
