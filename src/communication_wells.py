@@ -51,57 +51,40 @@ class Graph:
 
 g = Graph()
 
-with open('resources/communication_wells.csv', 'r') as file:
-    reader = csv.reader(file)
-    for row in reader:
-        well1, well2, distance = row
-        g.add_edge(well1.strip(), well2.strip(), int(distance))
 
-
-def write_to_output_file(file_name, min_cable_length):
-    """Write the minimum cable length to the output file.
+def read_graph_from_csv(file_name):
+    """Read the graph data from a CSV file.
 
     Args:
-        file_name (str): The name of the output file.
-        min_cable_length (int): The minimum cable length to write to the file.
+        file_name (str): The name of the CSV file containing the graph data.
 
     Returns:
-        str: The name of the output file.
+        Graph: The graph object.
     """
-    with open(file_name, "w") as file:
+    g = Graph()
+    with open(file_name, 'r') as file:
+        reader = csv.reader(file)
+        for row in reader:
+            well1, well2, distance = row
+            g.add_edge(well1.strip(), well2.strip(), int(distance))
+    return g
+
+
+def compute_min_cable_length(input_file_name, output_file_name):
+    """Compute the minimum cable length of the graph and write it to the output file."""
+    graph = read_graph_from_csv(input_file_name)
+
+    if not graph.graph:
+        min_cable_length = -1
+    else:
+        mst = graph.prim_mst()
+        min_cable_length = sum(weight for _, _, weight in mst)
+
+    with open(output_file_name, "w") as file:
         file.write(str(min_cable_length))
-    return file_name
 
 
-def compute_min_cable_length(graph):
-    """Compute the minimum cable length of the graph.
-
-    Args:
-        graph (Graph): The graph object.
-
-    Returns:
-        int: The minimum cable length.
-    """
-    mst = graph.prim_mst()
-    min_weight = sum(weight for _, _, weight in mst)
-    return min_weight if min_weight != 0 else -1
-
-
-def write_output_file(file_name, min_cable_length):
-    """Write the minimum cable length to the output file.
-
-    Args:
-        file_name (str): The name of the output file.
-        min_cable_length (int): The minimum cable length to write to the file.
-
-    Returns:
-        str: The name of the output file.
-        df
-    """
-    with open(file_name, "w") as file:
-        file.write(str(min_cable_length))
-    return file_name
-
-
-output_file_name = "resources/resulte_communication_wells.txt"
-write_output_file(output_file_name, compute_min_cable_length(g))
+if __name__ == "__main__":
+    input_file_name = "resources/communication_wells.csv"
+    output_file_name = "resources/result_communication_wells.txt"
+    compute_min_cable_length(input_file_name, output_file_name)
