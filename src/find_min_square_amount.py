@@ -16,4 +16,3 @@ def check_capacity(w, h, N, x):
         return True
     else:
         return False
-
