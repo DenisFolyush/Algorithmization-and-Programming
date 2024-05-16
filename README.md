@@ -11,5 +11,5 @@ If already installed use this command instead:
 `pip install --upgrade pytest` 
 to upgrade your pytest to the newest version
 
-now in CMD navigate to test folder (.../2-semester-labs/test) and use command:
+now in CMD navigate to test folder (.../Algorithmization-and-Programming/test) and use command:
 `pytest 'nameofthetestfile.py'`
