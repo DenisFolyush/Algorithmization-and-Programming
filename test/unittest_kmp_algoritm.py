@@ -1,5 +1,5 @@
 import unittest
-from src.kmp_argoritm import kmp_search
+from src.kmp_argoritm import kmp_search, prefix_func
 
 
 class TestKMP(unittest.TestCase):
@@ -31,7 +31,18 @@ class TestKMP(unittest.TestCase):
         # що то що то пусте
         needle = ""
         haystack = ""
-        self.assertTrue(kmp_search(needle, haystack))
+        self.assertFalse(kmp_search(needle, haystack))
+
+
+class TestPrefixFunction(unittest.TestCase):
+    def test_empty_string(self):
+        self.assertEqual(prefix_func(""), "no needle")
+
+    def test_single_character_string(self):
+        self.assertEqual(prefix_func("a"), [0])
+
+    def test_repeating_characters(self):
+        self.assertEqual(prefix_func("aaaaa"), [0, 1, 2, 3, 4])
 
 
 if __name__ == '__main__':
