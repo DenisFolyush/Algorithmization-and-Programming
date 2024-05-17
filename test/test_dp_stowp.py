@@ -1,6 +1,6 @@
 import unittest
 
-from src.dp_stowp import max_wire_length
+from src.dp_stowp import *
 
 
 class TestMaxWireLength(unittest.TestCase):
@@ -8,21 +8,21 @@ class TestMaxWireLength(unittest.TestCase):
         w = 2
         heights = [3, 3, 3]
         expected = 5.66
-        result = max_wire_length(w, heights)
+        result = find_max_wire_length(w, heights)
         self.assertAlmostEqual(result, expected, places=2)
 
     def test_300(self):
         w = 100
         heights = [1, 1, 1, 1]
         expected = 300.00
-        result = max_wire_length(w, heights)
+        result = find_max_wire_length(w, heights)
         self.assertAlmostEqual(result, expected, places=2)
 
     def test_big_stowp(self):
         w = 4
         heights = [100, 2, 100, 2, 100]
         expected = 396.32
-        result = max_wire_length(w, heights)
+        result = find_max_wire_length(w, heights)
         self.assertAlmostEqual(result, expected, places=2)
 
     def test_mega_big_stowp(self):
@@ -31,7 +31,7 @@ class TestMaxWireLength(unittest.TestCase):
                    60, 93, 40,
                    70, 75, 48, 38, 51, 34, 52, 87, 8, 62, 77, 35, 52, 3, 93, 34, 57, 51, 11, 39, 72]
         expected = 2738.18
-        result = max_wire_length(w, heights)
+        result = find_max_wire_length(w, heights)
         self.assertAlmostEqual(result, expected, places=2)
 
 
