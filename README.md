@@ -12,4 +12,4 @@ If already installed use this command instead:
 to upgrade your pytest to the newest version
 
 now in CMD navigate to test folder (.../Algorithmization-and-Programming/test) and use command:
-`pytest 'nameofthetestfile.py'`
+`pytest`

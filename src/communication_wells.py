@@ -50,9 +50,6 @@ class Graph:
         return min_span_tree
 
 
-g = Graph()
-
-
 def read_graph_from_csv(file_name):
     """Read the graph data from a CSV file.
 
@@ -62,12 +59,16 @@ def read_graph_from_csv(file_name):
     Returns:
         Graph: The graph object.
     """
-    g = Graph()  # вдруге оголошений граф?
+    g = Graph()
     with open(file_name, 'r') as file:
         reader = csv.reader(file)
         for row in reader:
-            well1, well2, distance = row
-            g.add_edge(well1.strip(), well2.strip(), int(distance))
+            try:
+                well1, well2, distance = row
+                g.add_edge(well1.strip(), well2.strip(), int(distance))
+            except ValueError:
+                print(f"Skipping invalid row: {row}")
+
     return g
 
 
@@ -83,8 +84,3 @@ def compute_min_cable_length(input_file_name, output_file_name):
 
     with open(output_file_name, "w") as file:
         file.write(str(min_cable_length))
-
-
-input_file_name = "../src/resources/communication_wells.csv"
-output_file_name = "../src/resources/result_communication_wells.txt"
-compute_min_cable_length(input_file_name, output_file_name)
