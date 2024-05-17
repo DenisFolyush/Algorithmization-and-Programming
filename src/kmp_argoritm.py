@@ -6,9 +6,6 @@ def prefix_func(needle):
     prefix = [0] * needle_len
     j = 0
     i = 1
-    while i < m:
-
-
     while i < needle_len:
         if needle[j] == needle[i]:
             prefix[i] = j + 1

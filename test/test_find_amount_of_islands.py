@@ -1,4 +1,5 @@
 import unittest
+
 from src.find_amount_of_islands import IslandCounter
 
 
@@ -30,6 +31,7 @@ class TestIslandCounter(unittest.TestCase):
     def test_one_island(self):
         one_island_grid = [['1']]
         self.assertEqual(self.island_counter.num_islands(one_island_grid), 1)
+
 
 if __name__ == '__main__':
     unittest.main()

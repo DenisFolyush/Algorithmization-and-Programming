@@ -1,4 +1,5 @@
 import csv
+
 from collections import defaultdict
 
 
@@ -13,9 +14,9 @@ class Graph:
         """Add an edge between vertices `source_vertex` and `destination_vertex` with the given `weight`.
 
         Args:
-            source_vertex (hashable): The first vertex.
-            destination_vertex (hashable): The second vertex.
-            weight (numeric): The weight of the edge.
+            source_vertex (hashable): The first vertex. #hashable?
+            destination_vertex (hashable): The second vertex. #hashable?
+            weight (numeric): The weight of the edge. #numeric?
         """
         self.graph[source_vertex][destination_vertex] = weight
         self.graph[destination_vertex][source_vertex] = weight
@@ -49,9 +50,6 @@ class Graph:
         return min_span_tree
 
 
-g = Graph()
-
-
 def read_graph_from_csv(file_name):
     """Read the graph data from a CSV file.
 
@@ -65,8 +63,12 @@ def read_graph_from_csv(file_name):
     with open(file_name, 'r') as file:
         reader = csv.reader(file)
         for row in reader:
-            well1, well2, distance = row
-            g.add_edge(well1.strip(), well2.strip(), int(distance))
+            try:
+                well1, well2, distance = row
+                g.add_edge(well1.strip(), well2.strip(), int(distance))
+            except ValueError:
+                print(f"Skipping invalid row: {row}")
+
     return g
 
 
@@ -82,9 +84,3 @@ def compute_min_cable_length(input_file_name, output_file_name):
 
     with open(output_file_name, "w") as file:
         file.write(str(min_cable_length))
-
-
-if __name__ == "__main__":
-    input_file_name = "resources/communication_wells.csv"
-    output_file_name = "resources/result_communication_wells.txt"
-    compute_min_cable_length(input_file_name, output_file_name)

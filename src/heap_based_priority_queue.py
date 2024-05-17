@@ -3,6 +3,7 @@ class Node:
         self.value = value
         self.priority = priority
 
+
 class PriorityQueue:
     def __init__(self):
         self.items = []
@@ -78,4 +79,3 @@ class PriorityQueue:
 
     def __str__(self):
         return ', '.join(str(node.value) for node in self.items)
-
