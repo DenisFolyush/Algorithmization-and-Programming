@@ -85,6 +85,6 @@ def compute_min_cable_length(input_file_name, output_file_name):
         file.write(str(min_cable_length))
 
 
-input_file_name = "resources/communication_wells.csv"
-output_file_name = "resources/result_communication_wells.txt"
+input_file_name = "../src/resources/communication_wells.csv"
+output_file_name = "../src/resources/result_communication_wells.txt"
 compute_min_cable_length(input_file_name, output_file_name)

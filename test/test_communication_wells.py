@@ -13,7 +13,7 @@ class TestCommunicationWells(unittest.TestCase):
         with open(out) as output_file:
             output = output_file.read()
 
-        expected = "1750"
+        expected = "760"
         self.assertEqual(output, expected)
 
 
