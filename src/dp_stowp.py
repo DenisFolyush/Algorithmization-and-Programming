@@ -10,19 +10,19 @@ def max_wire_length(width, heights):
     num_heights = len(heights)
 
     # масив який зберігає максимальну довжину дроту до опори i
-    dp = [[0] * (h + 1) for h in heights]
+    max_lengths = [[0] * (h + 1) for h in heights]
 
     # всі опори 0 мають нульову довжину
     for h in range(1, heights[0] + 1):
-        dp[0][h] = 0
+        max_lengths[0][h] = 0
 
     for i in range(1, num_heights):
         for h2 in range(1, heights[i] + 1):
-            dp[i][h2] = max(
-                dp[i - 1][h1] + calculate_distance(width, h1, h2)
+            max_lengths[i][h2] = max(
+                max_lengths[i - 1][h1] + calculate_distance(width, h1, h2)
                 for h1 in range(1, heights[i - 1] + 1)
             )
 
-    max_length = max(dp[-1])
+    max_length = max(max_lengths[-1])
 
     return round(max_length, 2)
